@@ -37,11 +37,9 @@ spec:
             - name: files-storage
               mountPath: "/data"
           env:
-            - description: Путь до образа приложения
-              name: IMAGE_URL
+            - name: IMAGE_URL
               value: localhost:5000/directory-synchronizer-backend
-            - description: Tag образа приложения
-              name: IMAGE_TAG
+            - name: IMAGE_TAG
               value: 1.0.0
             - name: TEST_VAL
               value: "Hello from the environment"
