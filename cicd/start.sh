@@ -10,8 +10,8 @@ docker build -t $image_name:$image_tag .
 docker tag $image_name:$image_tag localhost:5000/$image_name:$image_tag
 docker push localhost:5000/$image_name:$image_tag
 
-kubectl -n $name directory-synchronizer-backend delete deploy $name
-kubectl -n $name server delete svc $name
+kubectl -n $name delete deploy $name
+kubectl -n $name delete svc $name
 
 cd cicd
 kubectl apply -f Deployment.yaml
