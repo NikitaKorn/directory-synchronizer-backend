@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: directory-synchronizer-backend
+  namespace: directory-synchronizer-backend
+spec:
+  type: NodePort
+  selector:
+    app: directory-synchronizer-backend
+  ports:
+    - port: 8080
+      nodePort: 30100

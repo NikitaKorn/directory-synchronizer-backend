@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: directory-synchronizer-backend
+  namespace: directory-synchronizer-backend
+  labels:
+    app: directory-synchronizer-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: directory-synchronizer-backend
+  template:
+    metadata:
+      labels:
+        app: directory-synchronizer-backend
+    spec:
+      volumes:
+        - name: token-volume-mount
+          secret:
+            secretName: token-secret
+        - name: files-storage
+          persistentVolumeClaim:
+            claimName: files-pvc
+      containers:
+        - name: directory-synchronizer-backend
+          image: >-
+            ${IMAGE_URL}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - name: server
+              containerPort: 8080
+          volumeMounts:
+            - name: token-volume-mount
+              readOnly: true
+              mountPath: "/etc/token-secret"
+            - name: files-storage
+              mountPath: "/data"
+          env:
+            - description: Путь до образа приложения
+              name: IMAGE_URL
+              value: localhost:5000/directory-synchronizer-backend
+            - description: Tag образа приложения
+              name: IMAGE_TAG
+              value: 1.0.0
+            - name: TEST_VAL
+              value: "Hello from the environment"
+            - name: BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: token-secret

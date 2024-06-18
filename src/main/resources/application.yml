@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+test:
+  val: ${TEST_VAL:fromApp}
+
+service:
+  files:
+    repository-path: ${REPOSITORY_PATH:src/main/resources/files/}
+
+bot:
+  name: ObsidianSynchronizer_Bot
+  token: ${BOT_TOKEN:token}
