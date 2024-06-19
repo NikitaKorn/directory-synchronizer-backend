@@ -29,6 +29,12 @@ spec:
           ports:
             - name: backend
               containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8090
+            initialDelaySeconds: 60
+            periodSeconds: 10
           volumeMounts:
             - name: token-volume-mount
               readOnly: true

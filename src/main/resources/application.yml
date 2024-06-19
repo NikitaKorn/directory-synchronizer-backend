@@ -11,3 +11,9 @@ service:
 bot:
   name: ObsidianSynchronizer_Bot
   token: ${BOT_TOKEN:fixme}
+
+management:
+  server:
+    port: 8090
+  endpoints:
+    enabled-by-default: true
