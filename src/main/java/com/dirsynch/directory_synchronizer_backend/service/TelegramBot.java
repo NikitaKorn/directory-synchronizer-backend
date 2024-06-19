@@ -88,12 +88,10 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     public void loadCommandHandler(long chatId) throws TelegramApiException, IOException {
-        String path = String.format("src/main/resources/files/%s.zip", chatId);
-
         File fl = dataRepositoryService.loadFile(chatId);
         byte[] byteArray = Files.readAllBytes(Paths.get(fl.getAbsolutePath()));
 
-        File f = new File(path);
+        File f = new File(fl.getAbsolutePath());
         f.createNewFile();
         FileOutputStream fos = new FileOutputStream(f);
         fos.write(byteArray);
@@ -101,7 +99,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         fos.close();
 
         InputFile file = new InputFile();
-        file.setMedia(new File(path));
+        file.setMedia(fl);
 
         SendDocument document = new SendDocument();
         document.setChatId(String.valueOf(chatId));
