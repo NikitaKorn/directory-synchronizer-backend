@@ -41,7 +41,7 @@ spec:
             - name: IMAGE_TAG
               value: "1.0.0"
             - name: REPOSITORY_PATH
-              value: "/data/files"
+              value: "/data/files/"
             - name: BOT_TOKEN
               valueFrom:
                 secretKeyRef:
