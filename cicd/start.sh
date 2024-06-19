@@ -26,7 +26,7 @@ sleep 2s
 pod_name=$(kubectl -n $name get pod -l app=$name -o jsonpath="{.items[0].metadata.name}")
 
 #Wait until running and apply service
-kubectl -n $name wait --for=condition=Running pod/$pod_name
+kubectl -n $name wait --for=condition=Ready pod/$pod_name
 kubectl apply -f Service.yaml
 
 #Log pods status
