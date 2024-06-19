@@ -21,7 +21,7 @@ kubectl -n $name delete svc $name
 #Apply new deploy
 cd cicd
 kubectl apply -f Deployment.yaml
-wait 2s
+sleep 2s
 
 pod_name=$(kubectl -n $name get pod -l app=$name -o jsonpath="{.items[0].metadata.name}")
 
