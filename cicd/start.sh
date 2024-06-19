@@ -1,6 +1,6 @@
 #!/bin/bash
 
-image_tag=1.0.1
+image_tag=1.0.2
 image_name="directory-synchronizer-backend"
 name="directory-synchronizer-backend"
 

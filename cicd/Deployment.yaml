@@ -24,7 +24,7 @@ spec:
             claimName: files-pvc
       containers:
         - name: directory-synchronizer-backend
-          image: localhost:5000/directory-synchronizer-backend:1.0.1
+          image: localhost:5000/directory-synchronizer-backend:1.0.2
           imagePullPolicy: Always
           ports:
             - name: backend
