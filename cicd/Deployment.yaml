@@ -19,9 +19,9 @@ spec:
         - name: token-volume-mount
           secret:
             secretName: token-secret
-#        - name: files-storage
-#          persistentVolumeClaim:
-#            claimName: files-pvc
+        - name: files-storage
+          persistentVolumeClaim:
+            claimName: files-pvc
       containers:
         - name: directory-synchronizer-backend
           image: localhost:5000/directory-synchronizer-backend:1.0.0
@@ -33,8 +33,8 @@ spec:
             - name: token-volume-mount
               readOnly: true
               mountPath: "/etc/token-secret"
-#            - name: files-storage
-#              mountPath: "/data"
+            - name: files-storage
+              mountPath: "/data"
           env:
             - name: IMAGE_URL
               value: "localhost:5000/directory-synchronizer-backend"
