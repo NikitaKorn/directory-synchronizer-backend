@@ -2,6 +2,7 @@ package com.dirsynch.directory_synchronizer_backend.repo;
 
 import com.dirsynch.directory_synchronizer_backend.model.CFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,8 +20,8 @@ public class InMemoryDataRepository implements DataRepository {
     }
 
     @Override
-    public CFile loadFile(Long id) {
-        return files.get(id);
+    public File loadFile(Long id) {
+        return null;
     }
 
     public boolean contains(Long id){

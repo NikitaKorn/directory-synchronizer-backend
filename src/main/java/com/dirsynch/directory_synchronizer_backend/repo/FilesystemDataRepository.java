@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.Optional;
 
 @Repository
 public class FilesystemDataRepository implements DataRepository {
@@ -20,8 +24,11 @@ public class FilesystemDataRepository implements DataRepository {
     }
 
     @Override
-    public CFile loadFile(Long id) {
-        return null;
+    public File loadFile(Long id)  {
+        File f = new File(repositoryPath);
+        File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(String.valueOf(id)));
+        Optional<File> first = Arrays.stream(matchingFiles).findFirst();
+        return first.get();
     }
 
     @Override

@@ -17,6 +17,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 
 @Slf4j
 @Service
@@ -87,7 +88,8 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void loadCommandHandler(long chatId) throws TelegramApiException, IOException {
         String path = String.format("src/main/resources/files/%s.zip", chatId);
 
-        byte[] byteArray = dataRepositoryService.loadFile(chatId).getFile();
+        File fl = dataRepositoryService.loadFile(chatId);
+        byte[] byteArray = Files.readAllBytes(fl.toPath());
 
         File f = new File(path);
         f.createNewFile();

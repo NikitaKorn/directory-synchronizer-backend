@@ -6,6 +6,7 @@ import com.dirsynch.directory_synchronizer_backend.repo.DataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 
 @Service
@@ -21,7 +22,7 @@ public class DataRepositoryService {
         }
     }
 
-    public CFile loadFile(Long id){
+    public File loadFile(Long id) {
         return repository.loadFile(id);
     }
 
