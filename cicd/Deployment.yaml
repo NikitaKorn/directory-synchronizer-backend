@@ -38,9 +38,9 @@ spec:
 #              mountPath: "/data"
           env:
             - name: IMAGE_URL
-              value: localhost:5000/directory-synchronizer-backend
+              value: "localhost:5000/directory-synchronizer-backend"
             - name: IMAGE_TAG
-              value: 1.0.0
+              value: "1.0.0"
             - name: TEST_VAL
               value: "Hello from the environment"
             - name: BOT_TOKEN
