@@ -1,5 +1,5 @@
 # FROM cr.yandex/mirror/alpine:3.14
-FROM alpine:3.14
+FROM alpine:3.20
 
 RUN apk add openjdk17
 COPY target/directory-synchronizer-backend-1.0.1.jar app.jar
