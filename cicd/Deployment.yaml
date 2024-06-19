@@ -27,21 +27,21 @@ spec:
           image: localhost:5000/directory-synchronizer-backend:1.0.0
           imagePullPolicy: Always
           ports:
-            - name: server
+            - name: directory-synchronizer-backend
               containerPort: 8080
           volumeMounts:
             - name: token-volume-mount
               readOnly: true
               mountPath: "/etc/token-secret"
             - name: files-storage
-              mountPath: "/data"
+              mountPath: "/data/files"
           env:
             - name: IMAGE_URL
               value: "localhost:5000/directory-synchronizer-backend"
             - name: IMAGE_TAG
               value: "1.0.0"
-            - name: TEST_VAL
-              value: "Hello from the environment"
+            - name: REPOSITORY_PATH
+              value: "/data/files"
             - name: BOT_TOKEN
               valueFrom:
                 secretKeyRef:
