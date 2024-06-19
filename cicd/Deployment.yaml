@@ -27,7 +27,7 @@ spec:
           image: localhost:5000/directory-synchronizer-backend:1.0.0
           imagePullPolicy: Always
           ports:
-            - name: directory-synchronizer-backend
+            - name: backend
               containerPort: 8080
           volumeMounts:
             - name: token-volume-mount
