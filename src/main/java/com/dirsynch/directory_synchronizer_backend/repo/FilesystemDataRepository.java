@@ -1,6 +1,7 @@
 package com.dirsynch.directory_synchronizer_backend.repo;
 
 import com.dirsynch.directory_synchronizer_backend.model.CFile;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 @Repository
+@Slf4j
 public class FilesystemDataRepository implements DataRepository {
     @Value("${service.files.repository-path}")
     private String repositoryPath;
@@ -25,6 +27,7 @@ public class FilesystemDataRepository implements DataRepository {
 
     @Override
     public File loadFile(Long id)  {
+        log.info("Загрузка файла с id {}", id);
         File f = new File(repositoryPath);
         File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(String.valueOf(id)));
         Optional<File> first = Arrays.stream(matchingFiles).findFirst();
