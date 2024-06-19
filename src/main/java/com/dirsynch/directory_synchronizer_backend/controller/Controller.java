@@ -39,7 +39,7 @@ public class Controller {
     public void info(HttpServletRequest request, HttpServletResponse response) throws IOException {
         log.info("INFO");
         response.setStatus(200);
-        response.getWriter().write("QWE");
+        response.getWriter().write("SASHA :)");
         response.getWriter().flush();
     }
 }

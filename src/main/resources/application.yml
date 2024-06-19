@@ -10,4 +10,4 @@ service:
 
 bot:
   name: ObsidianSynchronizer_Bot
-  token: ${BOT_TOKEN:token}
+  token: ${BOT_TOKEN:fixme}

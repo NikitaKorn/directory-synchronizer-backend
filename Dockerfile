@@ -1,4 +1,4 @@
-# FROM cr.yandex/mirror/alpine:3.14
+# FROM cr.yandex/mirror/alpine:3.20
 FROM alpine:3.20
 
 RUN apk add openjdk17

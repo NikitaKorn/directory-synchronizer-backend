@@ -31,7 +31,6 @@ public class FilesystemDataRepository implements DataRepository {
         File f = new File(repositoryPath);
         File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(String.valueOf(id)));
         Optional<File> first = Arrays.stream(matchingFiles).findFirst();
-        log.info(first.get().getAbsolutePath());
         return first.get();
     }
 
