@@ -18,6 +18,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Slf4j
 @Service
@@ -89,7 +91,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         String path = String.format("src/main/resources/files/%s.zip", chatId);
 
         File fl = dataRepositoryService.loadFile(chatId);
-        byte[] byteArray = Files.readAllBytes(fl.toPath());
+        byte[] byteArray = Files.readAllBytes(Paths.get(fl.getAbsolutePath()));
 
         File f = new File(path);
         f.createNewFile();
