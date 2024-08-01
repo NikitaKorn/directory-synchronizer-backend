@@ -22,6 +22,12 @@ spec:
         - name: files-storage
           persistentVolumeClaim:
             claimName: files-pvc
+        - name: config
+          configMap:
+            name: app-cm
+            items:
+              - key: logback.xml
+                path: logback.xml
       containers:
         - name: directory-synchronizer-backend
           image: localhost:5000/directory-synchronizer-backend:1.0.2
@@ -41,9 +47,14 @@ spec:
               mountPath: "/etc/token-secret"
             - name: files-storage
               mountPath: "/data/files"
+            - name: config
+              mountPath: "/etc/app/configs"
+              readOnly: true
           env:
             - name: REPOSITORY_PATH
               value: "/data/files/"
+            - name: LOGGING_CONFIG_LOCATION
+              value: "/etc/app/configs/logback.xml"
             - name: BOT_TOKEN
               valueFrom:
                 secretKeyRef:
