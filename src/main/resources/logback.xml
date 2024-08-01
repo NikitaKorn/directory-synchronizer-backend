@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 seconds" debug="false">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <charset>UTF-8</charset>
+            <pattern>-%clr(%d{-yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(-%5p) %clr(-){magenta} %clr([%X{trace_id:-noTraceId}]){blue} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n-%wEx
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- Логгер сервиса -->
+    <logger name="com.dirsynch.directory_synchronizer_backend" level="INFO" additivity="false">
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <!-- Общий логгер -->
+    <root level="INFO">
+        <appender-ref ref="Console"/>
+    </root>
+
+</configuration>
