@@ -20,6 +20,7 @@ kubectl -n $name delete svc $name
 
 #Apply new deploy
 cd cicd
+kubectl apply -f ConfigMap.yaml
 kubectl apply -f Deployment.yaml
 sleep 2s
 
