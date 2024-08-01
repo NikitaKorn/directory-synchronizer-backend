@@ -10,6 +10,4 @@ public interface DataRepository {
     void saveFile(CFile file) throws IOException;
 
     File loadFile(Long id);
-
-    boolean contains(Long id);
 }

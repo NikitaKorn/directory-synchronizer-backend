@@ -25,8 +25,4 @@ public class DataRepositoryService {
     public File loadFile(Long id) {
         return repository.loadFile(id);
     }
-
-    public boolean contains(Long id){
-        return repository.contains(id);
-    }
 }

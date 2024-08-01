@@ -8,7 +8,7 @@ name="directory-synchronizer-backend"
 cd ..
 mvn clean -DskipTests package
 #Delete old images
-docker rmi $(docker images | grep '$image_name')
+docker rmi $(docker images | grep $image_name)
 #Docker build and push
 docker build -t $image_name:$image_tag .
 docker tag $image_name:$image_tag localhost:5000/$image_name:$image_tag

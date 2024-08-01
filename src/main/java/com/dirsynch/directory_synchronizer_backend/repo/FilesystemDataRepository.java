@@ -31,11 +31,6 @@ public class FilesystemDataRepository implements DataRepository {
         File f = new File(repositoryPath);
         File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(String.valueOf(id)));
         Optional<File> first = Arrays.stream(matchingFiles).findFirst();
-        return first.get();
-    }
-
-    @Override
-    public boolean contains(Long id) {
-        return false;
+        return first.orElse(null);
     }
 }

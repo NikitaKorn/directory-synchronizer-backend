@@ -47,9 +47,9 @@ public class TelegramBot extends TelegramLongPollingBot {
             long chatId = update.getMessage().getChatId();
 
             switch (message) {
-                case "/start":
-                    startCommandHandler(update);
-                    break;
+//                case "/start":
+//                    startCommandHandler(update);
+//                    break;
                 case "/load":
                     loadCommandHandler(chatId);
                     break;
@@ -57,15 +57,15 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    public String processUser(Update update){
-        Long userId = update.getMessage().getChatId();
-        if(dataRepositoryService.contains(userId)){
-            return "Пользователь с текущим ID уже зарегистрирован, ваш ID" + userId;
-        } else {
-            registerNewUser(update);
-            return "Новый пользователь зарегистрирован, ваш ID " + userId;
-        }
-    }
+//    public String processUser(Update update){
+//        Long userId = update.getMessage().getChatId();
+//        if(dataRepositoryService.contains(userId)){
+//            return "Пользователь с текущим ID уже зарегистрирован, ваш ID" + userId;
+//        } else {
+//            registerNewUser(update);
+//            return "Новый пользователь зарегистрирован, ваш ID " + userId;
+//        }
+//    }
 
     public void registerNewUser(Update update) {
         Long userId = update.getMessage().getChatId();
@@ -78,17 +78,32 @@ public class TelegramBot extends TelegramLongPollingBot {
         log.info("New user with name {} was registered", firstName);
     }
 
-    public void startCommandHandler(Update update) throws TelegramApiException {
-        String text = processUser(update);
-        SendMessage message = new SendMessage();
-        message.setChatId(String.valueOf(update.getMessage().getChatId()));
-        message.setText(text);
-
-        execute(message);
-    }
+//    public void startCommandHandler(Update update) throws TelegramApiException {
+//        String text = processUser(update);
+//        SendMessage message = new SendMessage();
+//        message.setChatId(String.valueOf(update.getMessage().getChatId()));
+//        message.setText(text);
+//
+//        execute(message);
+//    }
 
     public void loadCommandHandler(long chatId) throws TelegramApiException, IOException {
         File file = dataRepositoryService.loadFile(chatId);
+        if(file == null){
+            sendMessageToUser(chatId);
+        } else {
+            sendDocumentToUser(file, chatId);
+        }
+    }
+
+    private void sendMessageToUser(Long chatId) throws TelegramApiException {
+        SendMessage message = new SendMessage();
+        message.setChatId(String.valueOf(chatId));
+        message.setText("Пользователь не найден");
+        execute(message);
+    }
+
+    private void sendDocumentToUser(File file, Long chatId) throws IOException, TelegramApiException {
         byte[] byteArray = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
 
         FileOutputStream fos = new FileOutputStream(file);
