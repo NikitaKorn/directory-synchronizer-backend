@@ -12,6 +12,9 @@ bot:
   name: ObsidianSynchronizer_Bot
   token: ${BOT_TOKEN:fixme}
 
+logging:
+  config: ${LOGGING_CONFIG_LOCATION:src/main/resources/logback.xml}
+
 management:
   server:
     port: 8090

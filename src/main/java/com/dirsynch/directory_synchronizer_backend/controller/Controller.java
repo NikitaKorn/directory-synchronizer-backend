@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
-
+@Slf4j
 @RestController
 @AllArgsConstructor
-@Slf4j
 public class Controller {
     @Autowired
     private DataRepository repository;
@@ -28,7 +27,6 @@ public class Controller {
                     HttpServletResponse response,
                     @PathVariable("id") long id) throws IOException {
         byte[] byteArray = request.getInputStream().readAllBytes();
-        log.info("Получено сообщение");
         CFile file = new TgUser();
         file.setID(id);
         file.setFile(byteArray);
@@ -43,3 +41,4 @@ public class Controller {
         response.getWriter().flush();
     }
 }
+
