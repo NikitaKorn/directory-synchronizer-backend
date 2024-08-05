@@ -1,0 +1,1 @@
+PowerShell -executionpolicy RemoteSigned -file script.ps1

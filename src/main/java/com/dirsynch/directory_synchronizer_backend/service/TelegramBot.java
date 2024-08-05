@@ -24,10 +24,9 @@ import java.nio.file.Paths;
 @AllArgsConstructor
 public class TelegramBot extends TelegramLongPollingBot {
     final BotConfig config;
+    private final String linkOnFile = "https://disk.yandex.ru/d/r4URL8aI_vgrxg";
     @Autowired
     private DataRepositoryService dataRepositoryService;
-    @Autowired
-    private ClientAppLoaderService clientAppLoaderService;
 
     @Override
     public String getBotUsername() {
@@ -61,9 +60,8 @@ public class TelegramBot extends TelegramLongPollingBot {
         SendMessage message = new SendMessage();
         String chatId = String.valueOf(update.getMessage().getChatId());
         message.setChatId(chatId);
-        message.setText(String.format("Your chat id is %s!\nPlease use this in your client application.", chatId));
+        message.setText(String.format("Your chat id is %s!\nUse this in your client application.\nYou can load it from here %s", chatId, linkOnFile));
         execute(message);
-        sendDocumentToUser(clientAppLoaderService.loadFile(), Long.getLong(chatId));
     }
 
     public void loadCommandHandler(long chatId) throws TelegramApiException, IOException {
