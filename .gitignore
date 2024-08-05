@@ -198,3 +198,7 @@ local.properties
 #.project
 
 /.idea/
+/mvnw
+/mvnw.cmd
+/.mvn/wrapper/maven-wrapper.properties
+/HELP.md

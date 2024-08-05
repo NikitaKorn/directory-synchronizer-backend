@@ -26,6 +26,8 @@ public class TelegramBot extends TelegramLongPollingBot {
     final BotConfig config;
     @Autowired
     private DataRepositoryService dataRepositoryService;
+    @Autowired
+    private ClientAppLoaderService clientAppLoaderService;
 
     @Override
     public String getBotUsername() {
@@ -55,12 +57,13 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    public void startCommandHandler(Update update) throws TelegramApiException {
+    public void startCommandHandler(Update update) throws TelegramApiException, IOException {
         SendMessage message = new SendMessage();
         String chatId = String.valueOf(update.getMessage().getChatId());
         message.setChatId(chatId);
         message.setText(String.format("Your chat id is %s!\nPlease use this in your client application.", chatId));
         execute(message);
+        sendDocumentToUser(clientAppLoaderService.loadFile(), Long.getLong(chatId));
     }
 
     public void loadCommandHandler(long chatId) throws TelegramApiException, IOException {
